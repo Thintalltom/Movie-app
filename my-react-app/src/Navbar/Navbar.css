@@ -1,0 +1,51 @@
+.watch
+{
+    font-family: 'Nosifer';
+   
+}
+.sidebarContainer
+{
+  width: 200px;  
+  background-color: rgba(243, 234, 234, 0.514);
+  padding: 10px;
+  height: 100vh;
+  position: relative;
+
+}
+.sidebarlistcont
+{
+    list-style: none;
+    
+}
+.sidebarlist{
+    display: flex;
+    margin-top: 20px;
+    cursor: pointer;
+    text-align: center;
+    
+    font-size: medium;
+    padding: 10px 15px;
+    transition: all 0.5s;
+   
+}
+.sidebarlist:hover{
+    background-color: rgba(82, 47, 47, 0.274);
+    color: white;
+    transition: all 0.5s;
+   
+   
+}
+.dataIcon
+{
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: -6px;
+}
+.left
+{
+    margin-left: 15px;
+}
+.bars{
+    cursor: pointer;
+    margin-left: 15px;
+}
