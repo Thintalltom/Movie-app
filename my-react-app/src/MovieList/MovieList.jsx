@@ -1,49 +1,37 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+const MovieList = ({nextPage, prevPage, currentItems, totalPages, currentPage}) => {
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]); // Initialize as an empty array
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const url =
-    `https://ott-details.p.rapidapi.com/advancedsearch?start_year=1970&end_year=2020&min_imdb=6&max_imdb=7.8&genre=action&language=english&type=movie&sort=latest&page=${currentPage}&limit=${itemsPerPage}`;
-
-  const options = {
-    headers: {
-      "X-RapidAPI-Key": "a844195ae0msh1fbee6d2d56602cp18da5djsn5c6202c811c3",
-      "X-RapidAPI-Host": "ott-details.p.rapidapi.com",
-    },
-  };
-
-  const getMovies = async () => {
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result.results)
-      setMovies(result.results)
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, [currentPage, itemsPerPage]);
-
-  const totalPages = Math.ceil(movies.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = movies.slice(startIndex, endIndex)
 
   return (
-    <div className="bg-blue-500  h-[50vh]">
-     {currentItems.map((items) => {
-       return (
-         <p>{items.title}</p>
-       )
-     })}
+    <div className="bg-blue-500 w-[100vw]  h-[100vh] gap-9 ">
+      <div>
+        <div className="grid grid-cols-2 justify-items-center gap-4">
+          {currentItems.map((items) => {
+            return (
+              <Link to={`/detailedView/${items.id}`}>
+              <div key={items.id} className=" cursor-pointer bg-green-500 p-4 w-[300px] flex flex-col justify-center items-center">
+                <img src={items.image} />
+                <p className="gap-9 watch bg-slate-500 w-[300px] text-center">
+                  {items.title}
+                </p>
+              </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
 
-    
+      <p>total Pages: {totalPages}</p>
+      <div className="flex justify-around">
+        <button onClick={prevPage} className="bg-slate-500 text-white">
+          prev {currentPage.length}
+        </button>
+        <button onClick={nextPage} className="bg-slate-500 text-white">
+          Next
+        </button>
+      </div>
     </div>
   );
 };
