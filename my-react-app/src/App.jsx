@@ -13,7 +13,7 @@ function App() {
 
   const options = {
     headers: {
-      "X-RapidAPI-Key": "a844195ae0msh1fbee6d2d56602cp18da5djsn5c6202c811c3",
+      "X-RapidAPI-Key": "09999574a3mshabd0ed26da46e06p1f86ffjsn788695c664bc",
       "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
     },
   };
@@ -56,8 +56,8 @@ function App() {
   };
   return (
     <>
-      <div className="flex  ">
-        <Navbar />
+      <div className="bg-slate-900 h-screen">
+    
         <Routes>
           <Route path="/" element={   <MovieList currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} currentItems={currentItems} />} />
           <Route path="/detailedView/:itemId" element={   <DetailedView movies={movies}  />} />

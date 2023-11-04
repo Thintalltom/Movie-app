@@ -1,27 +1,52 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Movies from "./Movies";
 import { Link } from "react-router-dom";
-const MovieList = ({nextPage, prevPage, currentItems, totalPages, currentPage}) => {
-
-
+const MovieList = ({
+  nextPage,
+  prevPage,
+  currentItems,
+  totalPages,
+  currentPage,
+}) => {
   return (
-    <div className="bg-blue-500 w-[100vw]  h-[100vh] gap-9 ">
-      <div>
-        <div className="grid grid-cols-2 justify-items-center gap-4">
+    <div className="bg-slate-900  h-[screen] gap-9 p-[20px] ">
+      
+        <div className="grid  grid-cols-3 justify-items-center text-white gap-4">
+          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
+            Drama
+          </button>
+          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
+            History
+          </button>
+          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
+            Biography
+          </button>
+          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
+            Western
+          </button>
+          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
+            Action
+          </button>
+        </div>
+
+        <div className="flex flex-col bg-white ">
           {currentItems.map((items) => {
             return (
               <Link to={`/detailedView/${items.id}`}>
-              <div key={items.id} className=" cursor-pointer bg-green-500 p-4 w-[300px] flex flex-col justify-center items-center">
-                <img src={items.image} />
-                <p className="gap-9 watch bg-slate-500 w-[300px] text-center">
-                  {items.title}
-                </p>
-              </div>
+                <Movies
+                  genres={items.genre}
+                  image={items.image}
+                  title={items.title}
+                  id={items.id}
+                  year={items.year}
+                  rating={items.rating}
+                />
               </Link>
             );
           })}
         </div>
-      </div>
+    
 
       <p>total Pages: {totalPages}</p>
       <div className="flex justify-around">
