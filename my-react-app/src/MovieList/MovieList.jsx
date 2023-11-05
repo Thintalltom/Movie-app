@@ -8,32 +8,18 @@ const MovieList = ({
   currentItems,
   totalPages,
   currentPage,
+  info,
+  setInput
 }) => {
   return (
     <div className="bg-slate-900  h-[screen] gap-9 p-[20px] ">
       
-        <div className="grid  grid-cols-3 justify-items-center text-white gap-4">
-          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
-            Drama
-          </button>
-          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
-            History
-          </button>
-          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
-            Biography
-          </button>
-          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
-            Western
-          </button>
-          <button className="border-2 rounded-[10px] border-slate-300 w-[100px]  padding-[2px]">
-            Action
-          </button>
-        </div>
+       <p className='text-center text-white text-2xl'>IMDB TOP 100 MOVIES</p>
 
         <div className="flex flex-col bg-white ">
           {currentItems.map((items) => {
             return (
-              <Link to={`/detailedView/${items.id}`}>
+              <div>
                 <Movies
                   genres={items.genre}
                   image={items.image}
@@ -41,19 +27,21 @@ const MovieList = ({
                   id={items.id}
                   year={items.year}
                   rating={items.rating}
+                  info={info}
+                  setInput={setInput}
                 />
-              </Link>
+              </div>
             );
           })}
         </div>
     
 
-      <p>total Pages: {totalPages}</p>
-      <div className="flex justify-around">
-        <button onClick={prevPage} className="bg-slate-500 text-white">
+   
+      <div className="flex justify-around mt-4">
+        <button onClick={prevPage} className="rounded-[20px] p-[8px] bg-slate-500 text-white w-[100px]">
           prev {currentPage.length}
         </button>
-        <button onClick={nextPage} className="bg-slate-500 text-white">
+        <button onClick={nextPage} className=" p-[8px] rounded-[20px] bg-slate-500 text-white w-[100px]">
           Next
         </button>
       </div>

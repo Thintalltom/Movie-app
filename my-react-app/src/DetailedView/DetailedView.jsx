@@ -9,7 +9,7 @@ const DetailedView = () => {
   console.log(url);
   const options = {
     headers: {
-      "X-RapidAPI-Key": "09999574a3mshabd0ed26da46e06p1f86ffjsn788695c664bc",
+      "X-RapidAPI-Key": "c4ac43b0ccmsh73d7353f3f3a9eap14f604jsn40aa5a3dec2d",
       "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
     },
   };
@@ -33,7 +33,7 @@ const DetailedView = () => {
     big_image, director, genre, trailer, rating } = films;
 
   return (
-    <div className="flex justify-center gap-[20px] items-center bg-slate-900 text-white font-bold">
+    <div className="flex justify-center gap-[20px] p-4 mt-[10px] items-center bg-slate-900 text-white">
       <div >
         <div>
           <p className="text-3xl font-extrabold">{films.title}</p>
@@ -49,24 +49,20 @@ const DetailedView = () => {
             ></iframe>
           )}
           <div className="flex flex-col gap-[20px]">
-          <div className="border-y-2 border-slate-500"> Movie Year: {films.year}</div>
-      <div className="border-x-2 border-slate-500 "> Movie genre:      {Array.isArray(films.writers) ? (
-            <ul>
-              {films.genre.map((genre, index) => (
-                <li key={index}>{genre}</li>
-              ))}
-            </ul>
+          <div className="font-light"> Movie Year: {films.year}</div>
+      <div className="font-light "> Movie genre:  
+      {Array.isArray(films.genre) ? (
+             <p>{films.genre.join(',')}</p>
+            
           ) : (
             <p>{films.genre}</p>
-          )}</div>
-          <div className=" w-[700px] border-x-2 border-slate-500  font-bold  "> Movie description: {films.description}</div>
-          <div className="border-x-2 border-slate-500"> Movies rating: {films.rating}</div>
-          <div className="border-x-2 border-slate-500 gap-4">Movies Writer:      {Array.isArray(films.writers) ? (
-            <ul>
-              {films.writers.map((writer, index) => (
-                <li key={index}>{writer}</li>
-              ))}
-            </ul>
+          )}
+         </div>
+          <div className=" w-[700px]  font-light  "> Movie description: {films.description}</div>
+          <div className="font-light"> Movies rating: {films.rating}</div>
+          <div className="font-light gap-4">Movies Writer:      {Array.isArray(films.writers) ? (
+             <p>{films.writers.join(',')}</p>
+            
           ) : (
             <p>{films.writers}</p>
           )}</div>

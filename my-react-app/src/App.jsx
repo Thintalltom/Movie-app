@@ -8,12 +8,13 @@ import DetailedView from "./DetailedView/DetailedView";
 function App() {
   const [movies, setMovies] = useState([]); // Initialize as an empty array
   const [currentPage, setCurrentPage] = useState(1);
+  const [input, setInput] = useState([])
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const url = `https://imdb-top-100-movies.p.rapidapi.com?page=${currentPage}&limit=${itemsPerPage}`;
 
   const options = {
     headers: {
-      "X-RapidAPI-Key": "09999574a3mshabd0ed26da46e06p1f86ffjsn788695c664bc",
+      "X-RapidAPI-Key": "c4ac43b0ccmsh73d7353f3f3a9eap14f604jsn40aa5a3dec2d",
       "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
     },
   };
@@ -28,6 +29,11 @@ function App() {
       console.log(error);
     }
   };
+
+  const info = (e) => {
+    setInput(e.target.value)
+    console.log(input)
+  }
 
   useEffect(() => {
     getMovies();
@@ -57,9 +63,9 @@ function App() {
   return (
     <>
       <div className="bg-slate-900 h-screen">
-    
+      
         <Routes>
-          <Route path="/" element={   <MovieList currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} currentItems={currentItems} />} />
+          <Route path="/" element={   <MovieList setInput={setInput} input={input} info={info} currentPage={currentPage} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} currentItems={currentItems} />} />
           <Route path="/detailedView/:itemId" element={   <DetailedView movies={movies}  />} />
         </Routes>
         
